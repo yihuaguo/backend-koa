@@ -14,11 +14,9 @@ import errorHandle from './common/ErrorHandle'
 const app = new Koa()
 
 // 定义公共目录，不需要jwt鉴权的接口
-// public和login开头的接口
 const jwt = JWT({
     secret: config.JWT_SECRET
 }).unless({
-    // path: [/^\/miningMachine/, /^\/message/, /^\/upload/, /\/login/]
     path: [/^\/upload/, /\/login/]
 })
 
