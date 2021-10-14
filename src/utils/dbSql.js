@@ -7,9 +7,6 @@ export const querySql = (parmas, tableName) => {
     } = parmas
     const otherParamsList = Object.entries(otherParams)
     let otherParamsSql = ''
-
-
-
     otherParamsList.map(item => {
         const value = item[1].trim()
         if (Boolean(value.match(/^[ ]*$/))) return

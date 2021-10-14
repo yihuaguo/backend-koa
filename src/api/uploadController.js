@@ -1,9 +1,11 @@
 import fs from 'fs'
 import path from 'path'
-const uploadUrl = "http://192.168.50.19:3000";
+import config from '../config/index'
+const { isDev, SERVERSCONFIG } = config
+const uploadUrl = isDev ? SERVERSCONFIG.localhost.uploadUrl : SERVERSCONFIG.server.uploadUrl
 
 class uploadController {
-    constructor() {}
+    constructor() { }
 
     async upload(ctx) {
         console.log('ctx', ctx)
