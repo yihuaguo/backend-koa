@@ -1,13 +1,23 @@
 // jwt
 const JWT_SECRET = '^IYg8u!BkIxVWV7a8ZZUF$K27*DhLZvVIGx9ax5w4aL5g$XT7Ry!f%m&qxIUxp'
 
-// tbaleName
+// 数据库表名
 const TABLENAMELIST = {
     miningmachineTable: 'miningmachine',
-    miningmachineTypeTable: 'miningmachinetype',
     messageTable: 'message',
     messageTypeTable: 'messagetype',
+    helpTypeTable: 'helpType',
+    recruitTable: 'recruit',
+    helpTable: 'help',
     usersTable: 'users'
+}
+
+// 数据库配置
+const MYSQLCONFIG = {
+    host: 'localhost',
+    user: 'root',
+    password: '123456',
+    database: 'wantpools'
 }
 
 // 本地开发和线上服务器不同配置项
@@ -20,12 +30,13 @@ const SERVERSCONFIG = {
     }
 }
 
-// 每次上线修改
-const isDev = false
+// 每次上线修改-----------------------------------
+const isDev = true
 
 export default {
     JWT_SECRET,
     TABLENAMELIST,
     SERVERSCONFIG,
+    MYSQLCONFIG,
     isDev
 }

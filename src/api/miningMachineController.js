@@ -1,78 +1,59 @@
 import {
-    sendQuery,
-    sendInsert,
-    sendDetail,
-    sendDelete,
-    sendEdit
-} from "../config/MysqlHelper"
+    getMiningMachineListValidate,
+    addMiningMachineValidate,
+    deleteMiningMachineValidate,
+    getMiningMachineDetailValidate,
+    editMiningMachineValidate
+} from '../validate/miningMachineListValidate'
 import {
-    v4 as uuidv4
-} from 'uuid';
-import config from '../config/index'
-
-const {
-    miningmachineTable
-} = config.TABLENAMELIST
+    getMiningMachineListModal,
+    addMiningMachineModal,
+    deleteMiningMachineModal,
+    getMiningMachineDetailModal,
+    editMiningMachineModal
+} from "../modal/miningMachineListModal";
 
 class miningMachineController {
     constructor() { }
 
     // 矿机列表
     async getMiningMachineList(ctx) {
-        const {
-            current,
-            pageSize,
-            ...otherParams
-        } = ctx.request.query
-        const params = {
-            current,
-            pageSize,
-            ...otherParams
-        }
-        const result = await sendQuery(params, miningmachineTable)
+        const params = ctx.request.query
+        const filiterParams = getMiningMachineListValidate(params)
+        const result = await getMiningMachineListModal(filiterParams)
         ctx.body = result
     }
 
     // 矿机新增
     async addMiningMachine(ctx) {
-        const params = {
-            id: uuidv4(),
-            create_time: new Date().getTime(),
-            ...ctx.request.body
-        }
-        const result = await sendInsert(params, miningmachineTable)
-        ctx.body = {
-            code: result.affectedRows === 1 ? 200 : 500
-        }
+        const params = ctx.request.body
+        let filiterParams = addMiningMachineValidate(params)
+        const result = await addMiningMachineModal(filiterParams)
+        ctx.body = result
     }
 
     // 矿机删除
     async deleteMiningMachine(ctx) {
-        const {
-            id
-        } = ctx.request.query
-        const result = await sendDelete(id, miningmachineTable)
+        const params = ctx.request.query
+        const filiterParams = deleteMiningMachineValidate(params)
+        const result = await deleteMiningMachineModal(filiterParams)
         ctx.body = result
     }
 
     // 矿机详情
     async getMiningMachineDetail(ctx) {
-        const {
-            id
-        } = ctx.request.query
-        const result = await sendDetail(id, miningmachineTable)
+        const params = ctx.request.query
+        const filiterParams = getMiningMachineDetailValidate(params)
+        const result = await getMiningMachineDetailModal(filiterParams)
         ctx.body = result
     }
 
-    // 编辑系列
+    // 矿机编辑
     async editMiningMachine(ctx) {
-        const params = {
-            ...ctx.request.body
-        }
-        const result = await sendEdit(params, miningmachineTable)
-        ctx.body = {
-            code: result.affectedRows === 1 ? 200 : 500
-        }
+        const params = ctx.request.body
+        const filiterParams = editMiningMachineValidate(params)
+        const result = await editMiningMachineModal(filiterParams)
+        ctx.body = result
     }
 
 }

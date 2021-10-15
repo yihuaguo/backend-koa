@@ -1,34 +1,22 @@
-import {
-    sendLogin
-} from "../config/MysqlHelper"
-import config from '../config/index'
-import jsonwebtoken from 'jsonwebtoken'
-
-const {
-    usersTable
-} = config.TABLENAMELIST
+import { testValidate, loginValidate } from '../validate/loginValidate'
+import { loginModal } from '../modal/loginModal'
 
 class loginController {
     constructor() { }
 
+    // 登录
     async login(ctx) {
-        const {
-            account = '',
-            password = ''
-        } = ctx.request.body
-        const params = {
-            account,
-            password
-        }
-        const result = await sendLogin(params, usersTable)
-        if (result.code === 200) {
-            result.data.token = jsonwebtoken.sign({
-                _id: 'brian'
-            }, config.JWT_SECRET, {
-                expiresIn: '2h'
-            })
-        }
+        const params = ctx.request.body
+        const filiterParams = loginValidate(params)
+        const result = await loginModal(filiterParams)
         ctx.body = result
+    }
+
+    async test(ctx) {
+        testValidate(ctx.request.query)
+        ctx.body = {
+            code: 200
+        }
     }
 
 }

@@ -1,5 +1,5 @@
 import Koa from 'koa'
-import router from './routers/router'
+import router from './routers'
 import path from 'path'
 import JWT from 'koa-jwt'
 import statics from 'koa-static'
@@ -17,7 +17,7 @@ const app = new Koa()
 const jwt = JWT({
     secret: config.JWT_SECRET
 }).unless({
-    path: [/^\/upload/, /\/login/]
+    path: [/^\/upload/, /\/login/, /\/test/]
 })
 
 const middleware = compose([
@@ -33,7 +33,7 @@ const middleware = compose([
     json(),
     helmet(),
     errorHandle,
-    jwt
+    jwt,
 ])
 
 // 是否开发环境

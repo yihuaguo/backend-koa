@@ -8,7 +8,6 @@ class uploadController {
     constructor() { }
 
     async upload(ctx) {
-        console.log('ctx', ctx)
         try {
             const file = ctx.request.files.avatar
             const nowDate = new Date().getTime()
