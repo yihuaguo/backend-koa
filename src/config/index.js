@@ -23,10 +23,12 @@ const MYSQLCONFIG = {
 // 本地开发和线上服务器不同配置项
 const SERVERSCONFIG = {
     localhost: {
-        uploadUrl: 'http://192.168.50.19:3000'
+        uploadUrl: 'http://192.168.50.19:3000',
+        port: 3000,
     },
     server: {
-        uploadUrl: 'http://47.243.196.159:9528'
+        uploadUrl: 'http://47.243.196.159:9528',
+        port: 9528,
     }
 }
 

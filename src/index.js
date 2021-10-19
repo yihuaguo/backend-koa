@@ -45,4 +45,4 @@ if (!isDevMode) {
 app.use(middleware)
 app.use(router())
 
-app.listen(3000)
+app.listen(config.isDev ? config.SERVERSCONFIG.localhost.port : config.SERVERSCONFIG.server.port)
