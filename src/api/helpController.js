@@ -4,7 +4,7 @@ import {
     addHelpValidate,
     deleteHelpValidate,
     editHelpValidate
-} from '../validate/HelpValidate'
+} from '../validate/helpValidate'
 
 import {
     getHelpListModal,
@@ -12,7 +12,7 @@ import {
     addHelpModal,
     deleteHelpModal,
     editHelpModal
-} from '../modal/HelpModal'
+} from '../modal/helpModal'
 
 class HelpController {
     constructor() { }

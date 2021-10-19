@@ -4,7 +4,7 @@ import {
     addHelpTypeValidate,
     deleteHelpTypeValidate,
     editHelpTypeValidate
-} from '../validate/HelpTypeValidate'
+} from '../validate/helpTypeValidate'
 
 import {
     getHelpTypeListModal,
@@ -12,7 +12,7 @@ import {
     addHelpTypeModal,
     deleteHelpTypeModal,
     editHelpTypeModal
-} from '../modal/HelpTypeModal'
+} from '../modal/helpTypeModal'
 
 class HelpTypeController {
     constructor() { }
