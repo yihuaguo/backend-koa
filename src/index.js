@@ -23,6 +23,7 @@ const app = new Koa()
 const middleware = compose([
     koaBody({
         multipart: true,
+        formLimit: '10mb',
         formidable: {
             // 默认2m文件大小
             maxFieldsSize: 200 * 1024 * 1024
