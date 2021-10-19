@@ -5,7 +5,7 @@ import helpController from '../api/helpController'
 const router = new Router()
 
 // 帮助
-router.prefix('/help')
+router.prefix('/api/help')
 
 // 帮助分类
 router.get('/getHelpTypeList', helpTypeController.getHelpTypeList)

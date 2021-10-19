@@ -3,7 +3,7 @@ import loginController from '../api/loginController'
 
 const router = new Router()
 
-router.post('/login', loginController.login)
-router.get('/test', loginController.test)
+router.post('/api/login', loginController.login)
+router.get('/api/test', loginController.test)
 
 export default router

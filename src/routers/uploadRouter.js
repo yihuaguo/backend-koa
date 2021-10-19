@@ -3,6 +3,6 @@ import uploadController from '../api/uploadController'
 
 const router = new Router()
 
-router.post('/upload', uploadController.upload)
+router.post('/api/upload', uploadController.upload)
 
 export default router

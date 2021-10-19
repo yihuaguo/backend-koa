@@ -4,7 +4,7 @@ import miningMachineController from '../api/miningMachineController'
 const router = new Router()
 
 // 矿机管理
-router.prefix('/miningMachine')
+router.prefix('/api/miningMachine')
 
 // 矿机信息
 router.get('/getMiningMachineList', miningMachineController.getMiningMachineList)

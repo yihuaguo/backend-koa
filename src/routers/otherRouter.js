@@ -4,7 +4,7 @@ import recruitController from '../api/recruitController'
 const router = new Router()
 
 // 接口前缀
-router.prefix('/other')
+router.prefix('/api/other')
 
 // 招聘信息
 router.get('/getRecruitList', recruitController.getRecruitList)

@@ -5,7 +5,7 @@ import messageController from '../api/messageController'
 const router = new Router()
 
 // 资讯
-router.prefix('/message')
+router.prefix('/api/message')
 
 // 资讯分类
 router.get('/getMessageTypeList', messageTypeController.getMessageTypeList)
