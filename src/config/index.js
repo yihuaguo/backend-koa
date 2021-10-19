@@ -6,7 +6,7 @@ const TABLENAMELIST = {
     miningmachineTable: 'miningmachine',
     messageTable: 'message',
     messageTypeTable: 'messagetype',
-    helpTypeTable: 'helpType',
+    helpTypeTable: 'helptype',
     recruitTable: 'recruit',
     helpTable: 'help',
     usersTable: 'users'
