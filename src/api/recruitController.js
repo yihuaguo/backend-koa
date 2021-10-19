@@ -4,7 +4,7 @@ import {
     addRecruitValidate,
     deleteRecruitValidate,
     editRecruitValidate
-} from '../validate/RecruitValidate'
+} from '../validate/recruitValidate'
 
 import {
     getRecruitListModal,
@@ -12,7 +12,7 @@ import {
     addRecruitModal,
     deleteRecruitModal,
     editRecruitModal
-} from '../modal/RecruitModal'
+} from '../modal/recruitModal'
 
 class RecruitController {
     constructor() { }
