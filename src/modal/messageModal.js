@@ -1,14 +1,14 @@
 import config from '../config/index'
-import { where, limit, insert, update } from '../utils/splicSql'
+import { where, limit, insert, update, orderBy } from '../utils/splicSql'
 import sendSql from '../utils/mysqlConnect'
 import { v4 as uuidv4 } from 'uuid';
 const messageTable = config.TABLENAMELIST.messageTable
 
 // 资讯分类列表sql
 export const getMessageListModal = (params = {}) => {
-    const { current, pageSize, ...otherParams } = params
-    const countSql = `select count(*) from ${messageTable} ${where(otherParams)}`
-    const sql = `select * from ${messageTable} ${where(otherParams)} ${limit(current, pageSize)}`
+    const { current, pageSize, order, ...otherParams } = params
+    const countSql = `select count(*) from ${messageTable} ${where(otherParams)} ${order ? orderBy(order) : ''}`
+    const sql = `select * from ${messageTable} ${where(otherParams)} ${order ? orderBy(order) : ''} ${limit(current, pageSize)}`
     return sendSql(sql).then(async (res) => {
         const count = await sendSql(countSql)
         return {

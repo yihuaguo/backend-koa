@@ -52,9 +52,16 @@ export const insert = (params = {}) => {
     return `(${keys}) ${keys.length > 0 ? 'values' : ''} (${valuesStr})`
 }
 
+// order by 排序sql拼接
+// create_time => order by create_time desc
+export const orderBy = (orderStr) => {
+    return `order by ${orderStr} desc`
+}
+
 export default {
     where,
     limit,
     insert,
-    update
+    update,
+    orderBy
 }
