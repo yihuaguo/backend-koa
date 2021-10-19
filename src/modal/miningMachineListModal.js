@@ -7,7 +7,7 @@ const miningmachineTable = config.TABLENAMELIST.miningmachineTable
 // 矿机列表sql
 export const getMiningMachineListModal = (params = {}) => {
     const { current, pageSize, ...otherParams } = params
-    const countSql = `select count(*) from ${miningmachineTable}`
+    const countSql = `select count(*) from ${miningmachineTable} ${where(otherParams)}`
     const sql = `select * from ${miningmachineTable} ${where(otherParams)} ${limit(current, pageSize)}`
     return sendSql(sql).then(async (res) => {
         const count = await sendSql(countSql)

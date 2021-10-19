@@ -7,7 +7,7 @@ const messageTable = config.TABLENAMELIST.messageTable
 // 资讯分类列表sql
 export const getMessageListModal = (params = {}) => {
     const { current, pageSize, ...otherParams } = params
-    const countSql = `select count(*) from ${messageTable}`
+    const countSql = `select count(*) from ${messageTable} ${where(otherParams)}`
     const sql = `select * from ${messageTable} ${where(otherParams)} ${limit(current, pageSize)}`
     return sendSql(sql).then(async (res) => {
         const count = await sendSql(countSql)

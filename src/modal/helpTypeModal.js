@@ -8,7 +8,7 @@ const helpTypeTable = config.TABLENAMELIST.helpTypeTable
 export const getHelpTypeListModal = (params = {}) => {
     console.log('getHelpTypeListModal', getHelpTypeListModal)
     const { current, pageSize, ...otherParams } = params
-    const countSql = `select count(*) from ${helpTypeTable}`
+    const countSql = `select count(*) from ${helpTypeTable} ${where(otherParams)}`
     const sql = `select * from ${helpTypeTable} ${where(otherParams)} ${limit(current, pageSize)}`
     return sendSql(sql).then(async (res) => {
         const count = await sendSql(countSql)

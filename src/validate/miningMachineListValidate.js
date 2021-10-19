@@ -18,8 +18,8 @@ export const getMiningMachineListValidate = (params = {}) => {
 
 // 矿机新增校验
 export const addMiningMachineValidate = (params = {}) => {
-    const addMiningMachineFiliterList = ['name', 'state', 'model', 'config', 'price',
-        'hostPrice', 'skillPrice', 'description', 'htmlDocument', 'imgUrl'
+    const addMiningMachineFiliterList = ['name', 'state', 'start', 'type', 'model', 'config', 'price',
+        'hostPrice', 'skillPrice', 'description', 'htmlZjDocument', 'htmlGsDocument', 'htmlTgDocument', 'imgUrl', 'supply', 'power', 'consumption', 'consumptionRatio', 'supplyApi'
     ]
     const rules = {
         'name': 'required',
@@ -61,8 +61,8 @@ export const getMiningMachineDetailValidate = (params = {}) => {
 
 // 矿机编辑校验
 export const editMiningMachineValidate = (params = {}) => {
-    const editMiningMachineFiliterList = ['id', 'name', 'state', 'model', 'config', 'price',
-        'hostPrice', 'skillPrice', 'description', 'htmlDocument', 'imgUrl'
+    const editMiningMachineFiliterList = ['id', 'name', 'start', 'type', 'state', 'model', 'config', 'price',
+        'hostPrice', 'skillPrice', 'description', 'htmlZjDocument', 'htmlGsDocument', 'htmlTgDocument', 'imgUrl', , 'supply', 'power', 'consumption', 'consumptionRatio', 'supplyApi'
     ]
     const rules = {
         'id': 'required',

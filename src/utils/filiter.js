@@ -10,8 +10,7 @@ const isNull = (str) => {
 const filiter = (params, ruler) => {
     const filiterParams = {}
     ruler.map(item => {
-        if (params[item] === undefined || params[item] === null) return
-        if (isNull(params[item])) throw new Error('请误传递空格字符串!')
+        if (params[item] === undefined || params[item] === null || isNull(params[item])) return
         filiterParams[item] = params[item]
     })
     return filiterParams

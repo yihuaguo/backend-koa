@@ -8,7 +8,7 @@ const messageTypeTable = config.TABLENAMELIST.messageTypeTable
 export const getMessageTypeListModal = (params = {}) => {
     console.log('getMessageTypeListModal', getMessageTypeListModal)
     const { current, pageSize, ...otherParams } = params
-    const countSql = `select count(*) from ${messageTypeTable}`
+    const countSql = `select count(*) from ${messageTypeTable} ${where(otherParams)}`
     const sql = `select * from ${messageTypeTable} ${where(otherParams)} ${limit(current, pageSize)}`
     return sendSql(sql).then(async (res) => {
         const count = await sendSql(countSql)

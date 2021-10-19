@@ -3,7 +3,7 @@ import filiter from "../utils/filiter"
 
 // 资讯列表校验
 export const getMessageListValidate = (params = {}) => {
-    const getMessageListFiliterList = ['current', 'pageSize', 'name']
+    const getMessageListFiliterList = ['current', 'pageSize', 'typeId']
     const rules = {
         'current': 'required',
         'pageSize': 'required'

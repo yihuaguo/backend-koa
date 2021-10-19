@@ -7,7 +7,7 @@ const helpTable = config.TABLENAMELIST.helpTable
 // 资讯分类列表sql
 export const getHelpListModal = (params = {}) => {
     const { current, pageSize, ...otherParams } = params
-    const countSql = `select count(*) from ${helpTable}`
+    const countSql = `select count(*) from ${helpTable} ${where(otherParams)}`
     const sql = `select * from ${helpTable} ${where(otherParams)} ${limit(current, pageSize)}`
     return sendSql(sql).then(async (res) => {
         const count = await sendSql(countSql)
