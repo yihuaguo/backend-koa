@@ -33,7 +33,7 @@ const SERVERSCONFIG = {
 }
 
 // 每次上线修改（唯一）-----------------------------------
-const isDev = true
+const isDev = false
 
 export default {
     JWT_SECRET,
