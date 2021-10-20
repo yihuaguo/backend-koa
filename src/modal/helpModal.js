@@ -1,6 +1,5 @@
 import config from '../config/index'
-import { where, limit, insert, update, screen } from '../utils/splicSql'
-import { getHelpListModalField } from '../modalFieldFiliter/helpField';
+import { where, limit, insert, update } from '../utils/splicSql'
 import sendSql from '../utils/mysqlConnect'
 import { v4 as uuidv4 } from 'uuid';
 const helpTable = config.TABLENAMELIST.helpTable
@@ -8,9 +7,8 @@ const helpTable = config.TABLENAMELIST.helpTable
 // 资讯分类列表sql
 export const getHelpListModal = (params = {}) => {
     const { current, pageSize, ...otherParams } = params
-    const screenField = getHelpListModalField(['htmlDocument'])
     const countSql = `select count(*) from ${helpTable} ${where(otherParams)}`
-    const sql = `select ${screen(screenField)} from ${helpTable} ${where(otherParams)} ${limit(current, pageSize)}`
+    const sql = `select * from ${helpTable} ${where(otherParams)} ${limit(current, pageSize)}`
     return sendSql(sql).then(async (res) => {
         const count = await sendSql(countSql)
         return {
