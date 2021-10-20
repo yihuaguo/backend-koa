@@ -1,5 +1,6 @@
 import config from '../config/index'
-import { where, limit, insert, update } from '../utils/splicSql'
+import { where, limit, insert, update, screen } from '../utils/splicSql'
+import { getMiningMachineListField } from '../modalFieldFiliter/miningMachineField';
 import sendSql from '../utils/mysqlConnect'
 import { v4 as uuidv4 } from 'uuid';
 const miningmachineTable = config.TABLENAMELIST.miningmachineTable
@@ -7,8 +8,9 @@ const miningmachineTable = config.TABLENAMELIST.miningmachineTable
 // 矿机列表sql
 export const getMiningMachineListModal = (params = {}) => {
     const { current, pageSize, ...otherParams } = params
+    const screenField = getMiningMachineListField(['htmlZjDocument', 'htmlGsDocument', 'htmlTgDocument', 'description'])
     const countSql = `select count(*) from ${miningmachineTable} ${where(otherParams)}`
-    const sql = `select * from ${miningmachineTable} ${where(otherParams)} ${limit(current, pageSize)}`
+    const sql = `select ${screen(screenField)} from ${miningmachineTable} ${where(otherParams)} ${limit(current, pageSize)}`
     return sendSql(sql).then(async (res) => {
         const count = await sendSql(countSql)
         return {

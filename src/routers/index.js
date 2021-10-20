@@ -5,6 +5,7 @@ import helpRouter from './helpRouter'
 import otherRouter from './otherRouter'
 import uploadRouter from './uploadRouter'
 import loginRouter from './loginRouter'
+import webRouter from './webRouter'
 
 export default combineRoutes(
     miningMachineRouter,
@@ -12,5 +13,6 @@ export default combineRoutes(
     helpRouter,
     otherRouter,
     uploadRouter,
-    loginRouter
+    loginRouter,
+    webRouter
 )

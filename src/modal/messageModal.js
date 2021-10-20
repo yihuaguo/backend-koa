@@ -1,5 +1,6 @@
 import config from '../config/index'
-import { where, limit, insert, update, orderBy } from '../utils/splicSql'
+import { where, limit, insert, update, orderBy, screen } from '../utils/splicSql'
+import { getMessageListModalField } from '../modalFieldFiliter/messageField';
 import sendSql from '../utils/mysqlConnect'
 import { v4 as uuidv4 } from 'uuid';
 const messageTable = config.TABLENAMELIST.messageTable
@@ -7,8 +8,9 @@ const messageTable = config.TABLENAMELIST.messageTable
 // 资讯分类列表sql
 export const getMessageListModal = (params = {}) => {
     const { current, pageSize, order, ...otherParams } = params
+    const screenField = getMessageListModalField(['htmlDocument'])
     const countSql = `select count(*) from ${messageTable} ${where(otherParams)} ${order ? orderBy(order) : ''}`
-    const sql = `select * from ${messageTable} ${where(otherParams)} ${order ? orderBy(order) : ''} ${limit(current, pageSize)}`
+    const sql = `select ${screen(screenField)} from ${messageTable} ${where(otherParams)} ${order ? orderBy(order) : ''} ${limit(current, pageSize)}`
     return sendSql(sql).then(async (res) => {
         const count = await sendSql(countSql)
         return {

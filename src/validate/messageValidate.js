@@ -1,5 +1,5 @@
 import Validate from 'request-validate'
-import filiter from "../utils/filiter"
+import { filiter } from "../utils/filiter"
 
 // 资讯列表校验
 export const getMessageListValidate = (params = {}) => {

@@ -1,5 +1,5 @@
 import Validate from 'request-validate'
-import filiter from "../utils/filiter"
+import { filiter } from "../utils/filiter"
 
 // 招聘列表校验
 export const getRecruitListValidate = (params = {}) => {
@@ -57,7 +57,7 @@ export const deleteRecruitValidate = (params = {}) => {
 
 // 招聘编辑校验
 export const editRecruitValidate = (params = {}) => {
-    const editRecruitFiliterList = ['id','postName', 'school', 'sum', 'experience', 'htmlDocument']
+    const editRecruitFiliterList = ['id', 'postName', 'school', 'sum', 'experience', 'htmlDocument']
     const rules = {
         'id': 'required',
         'postName': 'required',

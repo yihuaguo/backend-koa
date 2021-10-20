@@ -1,9 +1,9 @@
 import Validate from 'request-validate'
-import filiter from "../utils/filiter"
+import { filiter } from "../utils/filiter"
 
 // 矿机列表校验
 export const getMiningMachineListValidate = (params = {}) => {
-    const getMiningMachineListFiliterList = ['current', 'pageSize', 'name']
+    const getMiningMachineListFiliterList = ['current', 'pageSize']
     const rules = {
         'current': 'required',
         'pageSize': 'required'
@@ -64,15 +64,16 @@ export const editMiningMachineValidate = (params = {}) => {
     const editMiningMachineFiliterList = ['id', 'name', 'start', 'type', 'state', 'model', 'config', 'price',
         'hostPrice', 'skillPrice', 'description', 'htmlZjDocument', 'htmlGsDocument', 'htmlTgDocument', 'imgUrl', , 'supply', 'power', 'consumption', 'consumptionRatio', 'supplyApi'
     ]
+    // 单独编辑富文本修改以下代码
     const rules = {
         'id': 'required',
-        'name': 'required',
-        'state': 'required'
+        // 'name': 'required',
+        // 'state': 'required'
     }
     const message = {
         'id.required': '未检测到 id',
-        'name.required': '未检测到 name',
-        'state.required': "未检测到 state"
+        // 'name.required': '未检测到 name',
+        // 'state.required': "未检测到 state"
     }
     Validate(params, rules, message)
     return filiter(params, editMiningMachineFiliterList)

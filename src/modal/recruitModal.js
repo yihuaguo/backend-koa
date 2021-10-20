@@ -1,14 +1,16 @@
 import config from '../config/index'
-import { where, limit, insert, update } from '../utils/splicSql'
+import { where, limit, insert, update, screen } from '../utils/splicSql'
 import sendSql from '../utils/mysqlConnect'
+import { getRecruitListField } from '../modalFieldFiliter/recruitField';
 import { v4 as uuidv4 } from 'uuid';
 const recruitTable = config.TABLENAMELIST.recruitTable
 
-// 资讯分类列表sql
+// 招聘列表sql
 export const getRecruitListModal = (params = {}) => {
     const { current, pageSize, ...otherParams } = params
+    const screenField = getRecruitListField(['htmlDocument'])
     const countSql = `select count(*) from ${recruitTable}`
-    const sql = `select * from ${recruitTable} ${where(otherParams)} ${limit(current, pageSize)}`
+    const sql = `select ${screen(screenField)} from ${recruitTable} ${where(otherParams)} ${limit(current, pageSize)}`
     return sendSql(sql).then(async (res) => {
         const count = await sendSql(countSql)
         return {
@@ -28,7 +30,7 @@ export const getRecruitListModal = (params = {}) => {
     })
 }
 
-// 资讯分类详情sql
+// 招聘详情sql
 export const getRecruitDetailModal = (params = {}) => {
     const sql = `select * from ${recruitTable} ${where(params)}`
     return sendSql(sql).then(res => {
@@ -44,7 +46,7 @@ export const getRecruitDetailModal = (params = {}) => {
     })
 }
 
-// 资讯分类新增sql
+// 招聘新增sql
 export const addRecruitModal = (params = {}) => {
     const filiterParams = {
         id: uuidv4(),
@@ -62,7 +64,7 @@ export const addRecruitModal = (params = {}) => {
     })
 }
 
-// 资讯分类删除sql
+// 招聘删除sql
 export const deleteRecruitModal = (params = {}) => {
     const sql = `delete from ${recruitTable} ${where(params)}`
     return sendSql(sql).then(() => {
@@ -75,7 +77,7 @@ export const deleteRecruitModal = (params = {}) => {
     })
 }
 
-// 资讯分类编辑sql
+// 招聘编辑sql
 export const editRecruitModal = (params = {}) => {
     const { id, ...otherParams } = params
     const sql = `update ${recruitTable} ${update(otherParams)} ${where({ id })}`

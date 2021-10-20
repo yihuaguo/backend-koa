@@ -52,6 +52,17 @@ export const insert = (params = {}) => {
     return `(${keys}) ${keys.length > 0 ? 'values' : ''} (${valuesStr})`
 }
 
+// screen 筛选sql拼接
+// ['name', 'age'] => 'name,age'
+export const screen = (screenField = []) => {
+    let screenStr = ''
+    if (screenField.length === 0) return ''
+    screenField.map((item, index) => {
+        screenStr += `${item}${screenField[index + 1] ? ',' : ''}`
+    })
+    return screenStr
+}
+
 // order by 排序sql拼接
 // create_time => order by create_time desc
 export const orderBy = (orderStr) => {
@@ -63,5 +74,6 @@ export default {
     limit,
     insert,
     update,
-    orderBy
+    orderBy,
+    screen
 }

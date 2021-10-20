@@ -14,11 +14,11 @@ import errorHandle from './common/ErrorHandle'
 const app = new Koa()
 
 // 定义公共目录，不需要jwt鉴权的接口
-// const jwt = JWT({
-//     secret: config.JWT_SECRET
-// }).unless({
-//     path: [/^\/upload/, /\/login/, /\/test/, /\/api/]
-// })
+const jwt = JWT({
+    secret: config.JWT_SECRET
+}).unless({
+    path: [/^\/api\/upload/, /\/api\/login/, /\/web/]
+})
 
 const middleware = compose([
     koaBody({
@@ -36,7 +36,7 @@ const middleware = compose([
     json(),
     helmet(),
     errorHandle,
-    // jwt,
+    jwt,
 ])
 
 // 是否开发环境
