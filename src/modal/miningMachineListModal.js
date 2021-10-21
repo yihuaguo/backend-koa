@@ -8,7 +8,7 @@ const miningmachineTable = config.TABLENAMELIST.miningmachineTable
 // 矿机列表sql
 export const getMiningMachineListModal = (params = {}) => {
     const { current, pageSize, ...otherParams } = params
-    const screenField = getMiningMachineListField(['htmlZjDocument', 'htmlGsDocument', 'htmlTgDocument', 'description'])
+    const screenField = getMiningMachineListField(['htmlZjDocument', 'htmlGsDocument', 'htmlTgDocument'])
     const countSql = `select count(*) from ${miningmachineTable} ${where(otherParams)}`
     const sql = `select ${screen(screenField)} from ${miningmachineTable} ${where(otherParams)} ${limit(current, pageSize)}`
     return sendSql(sql).then(async (res) => {
