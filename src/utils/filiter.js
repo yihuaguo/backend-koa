@@ -1,4 +1,4 @@
-// 空格或者空字符串
+// 判空格或者空字符串
 const isNull = (str) => {
     if (str == "") return true;
     var regu = "^[ ]+$";

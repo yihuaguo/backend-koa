@@ -9,6 +9,7 @@ const TABLENAMELIST = {
     helpTypeTable: 'helptype',
     recruitTable: 'recruit',
     helpTable: 'help',
+    configTable: 'config',
     usersTable: 'users'
 }
 

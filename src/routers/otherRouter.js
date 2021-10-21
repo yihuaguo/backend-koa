@@ -1,5 +1,6 @@
 import Router from 'koa-router'
 import recruitController from '../api/recruitController'
+import configController from '../api/configController'
 
 const router = new Router()
 
@@ -13,5 +14,8 @@ router.post('/addRecruit', recruitController.addRecruit)
 router.delete('/deleteRecruit', recruitController.deleteRecruit)
 router.put('/editRecruit', recruitController.editRecruit)
 
+// 官网设置
+router.get('/getConfig', configController.getConfig)
+router.put('/editConfig', configController.editConfig)
 
 export default router

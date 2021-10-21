@@ -5,6 +5,7 @@ import messageTypeController from '../api/messageTypeController'
 import messageController from '../api/messageController'
 import miningMachineController from '../api/miningMachineController'
 import recruitController from '../api/recruitController'
+import configController from '../api/configController'
 
 // 该文件所有接口用于官网端调用，不需要jwt校验
 const router = new Router()
@@ -28,5 +29,8 @@ router.get('/miningMachine/getMiningMachineDetail', miningMachineController.getM
 
 // 招聘信息
 router.get('/other/getRecruitList', recruitController.getRecruitList)
+// 官网设置
+router.get('/other/getConfig', configController.getConfig)
+router.put('/other/editConfig', configController.editConfig)
 
 export default router
