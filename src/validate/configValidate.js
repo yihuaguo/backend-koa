@@ -1,24 +1,10 @@
 import Validate from 'request-validate'
 import { filiter } from "../utils/filiter"
 
-// 获取配置校验
-export const getConfigValidate = (params = {}) => {
-    const getConfigFiliterList = ['id']
-    const rules = {
-        'id': 'required',
-    }
-    const message = {
-        'id.required': '未检测到 id',
-    }
-    Validate(params, rules, message)
-    return filiter(params, getConfigFiliterList)
-}
-
 // 编辑配置校验
 export const editConfigValidate = (params = {}) => {
-    const editConfigFiliterList = ['id', 'companyHtml', 'kfWxCodeImgUrl', 'gzhWxCodeImgUrl', 'kfPhone']
+    const editConfigFiliterList = ['companyHtml', 'kfWxCodeImgUrl', 'gzhWxCodeImgUrl', 'kfPhone']
     const rules = {
-        'id': 'required',
         'companyHtml': 'required',
         'kfWxCodeImgUrl': 'required',
         'gzhWxCodeImgUrl': 'required',
@@ -36,6 +22,5 @@ export const editConfigValidate = (params = {}) => {
 }
 
 export default {
-    getConfigValidate,
     editConfigValidate
 }

@@ -9,6 +9,7 @@ router.prefix('/api/miningMachine')
 // 矿机信息
 router.get('/getMiningMachineList', miningMachineController.getMiningMachineList)
 router.get('/getMiningMachineDetail', miningMachineController.getMiningMachineDetail)
+router.get('/isRecommendMiningMachine', miningMachineController.isRecommendMiningMachine)
 router.post('/addMiningMachine', miningMachineController.addMiningMachine)
 router.delete('/deleteMiningMachine', miningMachineController.deleteMiningMachine)
 router.put('/editMiningMachine', miningMachineController.editMiningMachine)

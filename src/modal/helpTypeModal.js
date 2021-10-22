@@ -3,9 +3,10 @@ import { where, limit, insert, update } from '../utils/splicSql'
 import sendSql from '../utils/mysqlConnect'
 import { v4 as uuidv4 } from 'uuid';
 const helpTypeTable = config.TABLENAMELIST.helpTypeTable
+const helpTable = config.TABLENAMELIST.helpTable
 
 // 帮助分类列表sql
-export const getHelpTypeListModal = (params = {}) => {
+export const getHelpTypeListModal = async (params = {}) => {
     console.log('getHelpTypeListModal', getHelpTypeListModal)
     const { current, pageSize, ...otherParams } = params
     const countSql = `select count(*) from ${helpTypeTable} ${where(otherParams)}`
@@ -30,7 +31,7 @@ export const getHelpTypeListModal = (params = {}) => {
 }
 
 // 帮助分类详情sql
-export const getHelpTypeDetailModal = (params = {}) => {
+export const getHelpTypeDetailModal = async (params = {}) => {
     const sql = `select * from ${helpTypeTable} ${where(params)}`
     return sendSql(sql).then(res => {
         return {
@@ -46,7 +47,7 @@ export const getHelpTypeDetailModal = (params = {}) => {
 }
 
 // 帮助分类新增sql
-export const addHelpTypeModal = (params = {}) => {
+export const addHelpTypeModal = async (params = {}) => {
     const filiterParams = {
         id: uuidv4(),
         create_time: new Date().getTime(),
@@ -64,7 +65,10 @@ export const addHelpTypeModal = (params = {}) => {
 }
 
 // 帮助分类删除sql
-export const deleteHelpTypeModal = (params = {}) => {
+export const deleteHelpTypeModal = async (params = {}) => {
+    const checkSql = `select id from ${helpTable} ${where({ typeId: params.id })}`
+    const helpList = await sendSql(checkSql)
+    if (helpList.length > 0) return { code: 500, msg: '该分类节点下有文章分支，请将全部文章删除后后再删除该分类节点！' }
     const sql = `delete from ${helpTypeTable} ${where(params)}`
     return sendSql(sql).then(() => {
         return { code: 200 }
@@ -77,7 +81,7 @@ export const deleteHelpTypeModal = (params = {}) => {
 }
 
 // 帮助分类编辑sql
-export const editHelpTypeModal = (params = {}) => {
+export const editHelpTypeModal = async (params = {}) => {
     const { id, ...otherParams } = params
     const sql = `update ${helpTypeTable} ${update(otherParams)} ${where({ id })}`
     return sendSql(sql).then(() => {

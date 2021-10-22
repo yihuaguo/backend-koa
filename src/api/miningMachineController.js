@@ -7,6 +7,8 @@ import {
 } from '../validate/miningMachineListValidate'
 import {
     getMiningMachineListModal,
+    getRecommendMiningMachineModal,
+    isRecommendMiningMachineModal,
     addMiningMachineModal,
     deleteMiningMachineModal,
     getMiningMachineDetailModal,
@@ -21,6 +23,18 @@ class miningMachineController {
         const params = ctx.request.query
         const filiterParams = getMiningMachineListValidate(params)
         const result = await getMiningMachineListModal(filiterParams)
+        ctx.body = result
+    }
+
+    // 获取首页推荐矿机
+    async getRecommendMiningMachine(ctx) {
+        const result = await getRecommendMiningMachineModal()
+        ctx.body = result
+    }
+
+    // 是否存在首页推荐矿机了
+    async isRecommendMiningMachine(ctx) {
+        const result = await isRecommendMiningMachineModal()
         ctx.body = result
     }
 

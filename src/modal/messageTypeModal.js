@@ -3,6 +3,7 @@ import { where, limit, insert, update } from '../utils/splicSql'
 import sendSql from '../utils/mysqlConnect'
 import { v4 as uuidv4 } from 'uuid';
 const messageTypeTable = config.TABLENAMELIST.messageTypeTable
+const messageTable = config.TABLENAMELIST.messageTable
 
 // 资讯分类列表sql
 export const getMessageTypeListModal = (params = {}) => {
@@ -64,7 +65,10 @@ export const addMessageTypeModal = (params = {}) => {
 }
 
 // 资讯分类删除sql
-export const deleteMessageTypeModal = (params = {}) => {
+export const deleteMessageTypeModal = async (params = {}) => {
+    const checkSql = `select id from ${messageTable} ${where({ typeId: params.id })}`
+    const messageList = await sendSql(checkSql)
+    if (messageList.length > 0) return { code: 500, msg: '该分类节点下有文章分支，请将全部文章删除后后再删除该分类节点！' }
     const sql = `delete from ${messageTypeTable} ${where(params)}`
     return sendSql(sql).then(() => {
         return { code: 200 }

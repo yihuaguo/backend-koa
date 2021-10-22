@@ -8,6 +8,7 @@ import {
 
 import {
     getMessageListModal,
+    getNewMessageListModal,
     getMessageDetailModal,
     addMessageModal,
     deleteMessageModal,
@@ -22,6 +23,12 @@ class messageController {
         const params = ctx.request.query
         const filiterParams = getMessageListValidate(params)
         const result = await getMessageListModal(filiterParams)
+        ctx.body = result
+    }
+
+    // 最新资讯
+    async getNewMessageList(ctx) {
+        const result = await getNewMessageListModal()
         ctx.body = result
     }
 

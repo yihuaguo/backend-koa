@@ -30,6 +30,23 @@ export const getMessageListModal = (params = {}) => {
     })
 }
 
+// 资讯最新列表
+export const getNewMessageListModal = () => {
+    const screenField = getMessageListModalField(['htmlDocument'])
+    const sql = `select ${screen(screenField)} from ${messageTable} where state='1' order by create_time desc limit 0,5`
+    return sendSql(sql).then(async (res) => {
+        return {
+            code: 200,
+            msg: res || []
+        }
+    }).catch(err => {
+        return {
+            code: 500,
+            msg: err
+        }
+    })
+}
+
 // 资讯分类详情sql
 export const getMessageDetailModal = (params = {}) => {
     const sql = `select * from ${messageTable} ${where(params)}`

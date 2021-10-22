@@ -21,16 +21,19 @@ router.get('/help/getHelpList', helpController.getHelpList)
 router.get('/message/getMessageTypeList', messageTypeController.getMessageTypeList)
 // 资讯信息
 router.get('/message/getMessageList', messageController.getMessageList)
+router.get('/message/getNewMessageList', messageController.getNewMessageList)
 router.get('/message/getMessageDetail', messageController.getMessageDetail)
 
 // 矿机信息
 router.get('/miningMachine/getMiningMachineList', miningMachineController.getMiningMachineList)
 router.get('/miningMachine/getMiningMachineDetail', miningMachineController.getMiningMachineDetail)
+router.get('/miningMachine/getRecommendMiningMachine', miningMachineController.getRecommendMiningMachine)
 
 // 招聘信息
 router.get('/other/getRecruitList', recruitController.getRecruitList)
 // 官网设置
 router.get('/other/getConfig', configController.getConfig)
-router.put('/other/editConfig', configController.editConfig)
+router.get('/other/getConfigOfWebSite', configController.getConfigOfWebSite)
+router.get('/other/getConfigOfImgAndPhone', configController.getConfigOfImgAndPhone)
 
 export default router

@@ -3,7 +3,7 @@ import { filiter } from "../utils/filiter"
 
 // 矿机列表校验
 export const getMiningMachineListValidate = (params = {}) => {
-    const getMiningMachineListFiliterList = ['current', 'pageSize']
+    const getMiningMachineListFiliterList = ['current', 'pageSize', 'state']
     const rules = {
         'current': 'required',
         'pageSize': 'required'
@@ -18,16 +18,16 @@ export const getMiningMachineListValidate = (params = {}) => {
 
 // 矿机新增校验
 export const addMiningMachineValidate = (params = {}) => {
-    const addMiningMachineFiliterList = ['name', 'state', 'start', 'type', 'model', 'config', 'price',
-        'hostPrice', 'skillPrice', 'description', 'htmlZjDocument', 'htmlGsDocument', 'htmlTgDocument', 'imgUrl', 'supply', 'power', 'consumption', 'consumptionRatio', 'supplyApi'
+    const addMiningMachineFiliterList = ['name', 'state', 'start', 'type', 'model', 'config', 'price', 'core',
+        'hostPrice', 'skillPrice', 'description', 'htmlZjDocument', 'htmlGsDocument', 'htmlTgDocument', 'imgUrl', 'power'
     ]
     const rules = {
         'name': 'required',
-        'state': 'required'
+        'model': 'required',
     }
     const message = {
-        'name.required': '未检测到 name',
-        'state.required': "未检测到 state"
+        'name.required': '未检测到 矿机名',
+        'model.required': "未检测到 型号",
     }
     Validate(params, rules, message)
     return filiter(params, addMiningMachineFiliterList)
@@ -48,7 +48,7 @@ export const deleteMiningMachineValidate = (params = {}) => {
 
 // 矿机详情校验
 export const getMiningMachineDetailValidate = (params = {}) => {
-    const getMiningMachineDetailFiliterList = ['id']
+    const getMiningMachineDetailFiliterList = ['id', 'filiter']
     const rules = {
         'id': 'required',
     }
@@ -61,19 +61,14 @@ export const getMiningMachineDetailValidate = (params = {}) => {
 
 // 矿机编辑校验
 export const editMiningMachineValidate = (params = {}) => {
-    const editMiningMachineFiliterList = ['id', 'name', 'start', 'type', 'state', 'model', 'config', 'price',
-        'hostPrice', 'skillPrice', 'description', 'htmlZjDocument', 'htmlGsDocument', 'htmlTgDocument', 'imgUrl', , 'supply', 'power', 'consumption', 'consumptionRatio', 'supplyApi'
+    const editMiningMachineFiliterList = ['id', 'name', 'start', 'type', 'state', 'model', 'config', 'price', 'core',
+        'hostPrice', 'skillPrice', 'description', 'htmlZjDocument', 'htmlGsDocument', 'htmlTgDocument', 'imgUrl', 'power'
     ]
-    // 单独编辑富文本修改以下代码
     const rules = {
         'id': 'required',
-        // 'name': 'required',
-        // 'state': 'required'
     }
     const message = {
         'id.required': '未检测到 id',
-        // 'name.required': '未检测到 name',
-        // 'state.required': "未检测到 state"
     }
     Validate(params, rules, message)
     return filiter(params, editMiningMachineFiliterList)

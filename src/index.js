@@ -36,7 +36,7 @@ const middleware = compose([
     json(),
     helmet(),
     errorHandle,
-    jwt,
+    // jwt,
 ])
 
 // 是否开发环境
@@ -48,4 +48,6 @@ if (!isDevMode) {
 app.use(middleware)
 app.use(router())
 
-app.listen(config.isDev ? config.SERVERSCONFIG.localhost.port : config.SERVERSCONFIG.server.port)
+const port = config.isDev ? config.SERVERSCONFIG.localhost.port : config.SERVERSCONFIG.server.port
+app.listen(port)
+console.log(`端口已启动${port}`)

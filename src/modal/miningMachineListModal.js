@@ -30,6 +30,39 @@ export const getMiningMachineListModal = (params = {}) => {
     })
 }
 
+// 矿机推荐
+export const getRecommendMiningMachineModal = () => {
+    const screenField = getMiningMachineListField(['htmlZjDocument', 'htmlGsDocument', 'htmlTgDocument'])
+    const sql = `select ${screen(screenField)} from ${miningmachineTable} where start='1'`
+    return sendSql(sql).then(async (res) => {
+        return {
+            code: 200,
+            msg: res[0] || {}
+        }
+    }).catch(err => {
+        return {
+            code: 500,
+            msg: err
+        }
+    })
+}
+
+// 是否存在首页推荐矿机了
+export const isRecommendMiningMachineModal = () => {
+    const sql = `select id from ${miningmachineTable} where start='1'`
+    return sendSql(sql).then(async (res) => {
+        return {
+            code: 200,
+            msg: res.length > 0 ? true : false
+        }
+    }).catch(err => {
+        return {
+            code: 500,
+            msg: err
+        }
+    })
+}
+
 // 矿机新增sql
 export const addMiningMachineModal = (params = {}) => {
     const filiterParams = {
@@ -63,11 +96,25 @@ export const deleteMiningMachineModal = (params = {}) => {
 
 // 矿机详情sql
 export const getMiningMachineDetailModal = (params = {}) => {
-    const sql = `select * from ${miningmachineTable} ${where(params)}`
+    const { id, filiter = '' } = params
+    let filiterSql = ''
+    if (filiter === 'base') {
+        filiterSql = `${filiter ? screen(getMiningMachineListField(['htmlZjDocument', 'htmlGsDocument', 'htmlTgDocument'])) : ''}`
+    } else if (filiter === 'htmlZjDocument') {
+        filiterSql = 'htmlZjDocument'
+    } else if (filiter === 'htmlGsDocument') {
+        filiterSql = 'htmlGsDocument'
+    } else if (filiter === 'htmlTgDocument') {
+        filiterSql = 'htmlTgDocument'
+    } else {
+        filiterSql = '*'
+    }
+    const sql = `select ${filiterSql} from ${miningmachineTable} ${where({ id })}`
+    console.log('sql', sql)
     return sendSql(sql).then(res => {
         return {
             code: 200,
-            msg: res[0]
+            msg: res[0] || {}
         }
     }).catch(err => {
         return {
@@ -93,6 +140,8 @@ export const editMiningMachineModal = (params = {}) => {
 
 export default {
     getMiningMachineListModal,
+    getRecommendMiningMachineModal,
+    isRecommendMiningMachineModal,
     addMiningMachineModal,
     deleteMiningMachineModal,
     getMiningMachineDetailModal,

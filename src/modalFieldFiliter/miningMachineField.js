@@ -8,17 +8,15 @@ export const getMiningMachineListField = (filiterField = []) => {
         'model',
         'config',
         'price',
+        'core',
+        'type',
         'hostPrice',
         'skillPrice',
         'description',
         'create_time',
         'htmlZjDocument',
         'imgUrl',
-        'supply',
         'power',
-        'consumption',
-        'consumptionRatio',
-        'supplyApi',
         'htmlGsDocument'
     ]
     return removeRepeat(allField, filiterField)
