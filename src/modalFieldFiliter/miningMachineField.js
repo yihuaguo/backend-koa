@@ -6,6 +6,7 @@ export const getMiningMachineListField = (filiterField = []) => {
         'name',
         'state',
         'model',
+        'start',
         'config',
         'price',
         'core',
